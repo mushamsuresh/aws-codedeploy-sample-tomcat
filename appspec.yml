@@ -1,10 +1,13 @@
 version: 0.2
 os: linux
+
 files:
-  - source: /target/SampleMavenTomcatApp.war
-    destination: /tmp/codedeploy-deployment-staging-area/
-  - source: /scripts/configure_http_port.xsl
-    destination: /tmp/codedeploy-deployment-staging-area/
+  - source: SampleMavenTomcatApp.war
+    destination: /opt/tomcat9/webapps/ROOT
+    overwrite: yes
+  - source: scripts/configure_http_port.xsl
+    destination: /opt/tomcat9/scripts/
+
 hooks:
   ApplicationStop:
     - location: scripts/stop_application
