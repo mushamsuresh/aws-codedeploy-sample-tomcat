@@ -3,9 +3,14 @@ version: 0.2
 phases:
   build:
     commands:
-      - echo Build completed on `date`
+      - echo Build started on `date`
       - mvn package
+      - mkdir -p output
+      - cp -r appspec.yml target output/  # Include appspec.yml and build output
+      - cd output
+      - zip -r ../javaapp.zip .
+      - cd ..
 
 artifacts:
   files:
-    - '**/*'
+    - javaapp.zip
